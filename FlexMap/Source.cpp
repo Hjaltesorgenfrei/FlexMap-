@@ -1,7 +1,7 @@
 #include "raylib.h"
-
 #include <stdio.h>
 
+#include "Parser.hpp"
 
 void ZoomRelativeToMouse();
 
@@ -14,10 +14,12 @@ Vector2 oldMousePos;
 bool mouseWasPressed = false;
 
 
-int main(void)
+int main(int argc, char* argv[])
 {
     // Initialization
     //--------------------------------------------------------------------------------------
+    ParseFile("lejr.osm");
+    
     camera.rotation = 0.0f;
     camera.zoom = 1.0f;
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
@@ -126,7 +128,7 @@ void UpdateDrawFrame(void)
 
         ClearBackground(RAYWHITE);
 
-        DrawFPS(0, 0);
+        
 
         BeginMode2D(camera);
         {
@@ -137,6 +139,7 @@ void UpdateDrawFrame(void)
             }
         }
         EndMode2D();
+        DrawFPS(0, 0);
     }
     EndDrawing();
     //----------------------------------------------------------------------------------
