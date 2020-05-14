@@ -30,9 +30,6 @@ int main(int argc, char* argv[])
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
 
-    SetTargetFPS(60);   // Set our game to run at 60 frames-per-second
-    //--------------------------------------------------------------------------------------
-
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
@@ -137,6 +134,7 @@ void UpdateDrawFrame(void)
             for (int i = 0; i < 100000; i++) {
                 DrawLineEx({ (float)fastrand() / 10, (float)fastrand() / 10 }, { (float)fastrand() / 10, (float)fastrand() / 10 }, 30, BLACK);
             }
+            
         }
         EndMode2D();
         DrawFPS(0, 0);

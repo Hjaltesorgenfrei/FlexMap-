@@ -53,7 +53,9 @@ int ParseThatShit() {
         return -1;
     }
     for (auto k : docHandler->count) {
-        std::cout << XMLString::transcode(k.first) << ":" << k.second << "\n";
+        char* name = XMLString::transcode(k.first);
+        std::cout <<  name << ":" << k.second << "\n";
+        XMLString::release(&name);
     }
     delete parser;
     delete docHandler;
@@ -65,10 +67,8 @@ void OSMHandler::startElement(const XMLCh* const name,
     AttributeList& attributes)
 {
     char* message = XMLString::transcode(name);
-    //std::cout << "I saw element: " << message << "\n";
     for (unsigned int i = 0; i < attributes.getLength(); i++){
         count[attributes.getName(i)]++;
-        //std::cout << "    " << attributes.getName(i) << ":" << attributes.getValue(i) << "\n";
     }
     XMLString::release(&message);
 }
@@ -79,6 +79,12 @@ void OSMHandler::fatalError(const SAXParseException& exception)
     std::cout << "Fatal Error: " << message
         << " at line: " << exception.getLineNumber()
         << "\n";
+    XMLString::release(&message);
+}
+
+void OSMHandler::endElement(const XMLCh* const name)
+{
+    char* message = XMLString::transcode(name);
     XMLString::release(&message);
 }
 

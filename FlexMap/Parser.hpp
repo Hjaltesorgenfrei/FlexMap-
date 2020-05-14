@@ -20,6 +20,7 @@ public:
     std::map<const XMLCh* const, int> count;
     void startElement(const XMLCh* const, AttributeList&);
     void fatalError(const SAXParseException&);
+    void endElement(const XMLCh* const);
 };
 
 ParsedData ParseFile(string path);
