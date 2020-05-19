@@ -46,9 +46,9 @@ int main(int argc, char* argv[])
 
 void ZoomRelativeToMouse()
 {
-    float wheelMove = (float)GetMouseWheelMove();
+	const float wheelMove = (float)GetMouseWheelMove();
     if (wheelMove != 0.0) {
-        float oldZoom = camera.zoom;
+	    const float oldZoom = camera.zoom;
         camera.zoom += (wheelMove * 0.025f);
         if (camera.zoom < 0.1f) camera.zoom = oldZoom;
         if (camera.zoom != oldZoom) {
@@ -67,7 +67,7 @@ void ZoomRelativeToMouse()
 
 void Drag()
 {
-    bool mouseIsPressed = IsMouseButtonDown(MOUSE_LEFT_BUTTON);
+	const bool mouseIsPressed = IsMouseButtonDown(MOUSE_LEFT_BUTTON);
     
     
     if (mouseIsPressed && !mouseWasPressed) {
@@ -115,8 +115,8 @@ void UpdateDrawFrame(void)
     }
 
 
-    int screenWidth = GetScreenWidth();
-    int screenHeight = GetScreenHeight();
+    const int screenWidth = GetScreenWidth();
+    const int screenHeight = GetScreenHeight();
 
     // Draw
     //----------------------------------------------------------------------------------

@@ -23,11 +23,11 @@ int ParseThatShit() {
     }
 
     char* xmlFile = (char*)"lejr.osm";
-    SAXParser* parser = new SAXParser();
+    auto* parser = new SAXParser();
     parser->setDoNamespaces(true);    // optional
 
-    OSMHandler* docHandler = new OSMHandler();
-    ErrorHandler* errHandler = (ErrorHandler*)docHandler;
+    auto* docHandler = new OSMHandler();
+    auto* errHandler = static_cast<ErrorHandler*>(docHandler);
     parser->setDocumentHandler(docHandler);
     parser->setErrorHandler(errHandler);
 
