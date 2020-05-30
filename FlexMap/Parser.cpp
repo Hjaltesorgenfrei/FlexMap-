@@ -63,13 +63,25 @@ int ParseThatShit() {
 }
 
 
+void OSMHandler::handleNode(std::map<string, string> values)
+{
+    std::cout << "node-" << values["id"]  <<  ": (" << values["lat"] << ", " << values["lon"] << ")\n";
+}
+
 void OSMHandler::startElement(const XMLCh* const name,
-    AttributeList& attributes)
+                              AttributeList& attributes)
 {
     char* message = XMLString::transcode(name);
+    std::map<string, string> values;
     for (unsigned int i = 0; i < attributes.getLength(); i++){
-        count[attributes.getName(i)]++;
+        string name = stringFromXMLCh(attributes.getName(i));
+        string value = stringFromXMLCh(attributes.getValue(i));
+        values[name] = value;
     }
+	if (strcmp(message, "node") == 0)
+	{
+        this->handleNode(values);
+	}
     XMLString::release(&message);
 }
 
